@@ -30,13 +30,21 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+
+  counter1 contains the count variable while the second counter is globally defined.
   
   2. Which of the two uses a closure? How can you tell?
+
+  The first example uses closure. You can tell by looking at the 3rd line returning a function called counter().
+  the counter() function looks outside of itself (within the counterMaker) and grabs count from counterMaker()
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
-*/
 
+  counter1 is preferable when you want your child function's variables to only be available through the parent function.
+  counter2 is preferable when you want the functions variables to be globally available.
+*/
+// where is count available to us?
 // counter1 code
 function counterMaker() {
   let count = 0;
@@ -47,6 +55,7 @@ function counterMaker() {
 
 const counter1 = counterMaker();
 
+// where is count available to us?
 // counter2 code
 let count = 0;
 
@@ -76,6 +85,8 @@ Use the finalScore function below to do the following:
   3. After each inning, update the score of the home and away teams
   4. After the last inning, return an object containing the final (total) score of the innings played
   
+  // similar to hockeyGame example on codepen
+
   For example: invoking finalScore(inning, 9) might return this object:
 {
   "Home": 11,
