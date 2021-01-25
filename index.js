@@ -189,9 +189,26 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
+function scoreboard(getInningScoreCB, inningCB, expectedInnings){
   /* CODE HERE */
+  let results = [];
+  let homeScore = 0;
+  let awayScore = 0;
+  for(let i = 0; i < expectedInnings; i++){
+    let currentInning = getInningScoreCB(inningCB);
+    homeScore = homeScore + currentInning.Home;
+    awayScore = awayScore + currentInning.Away;
+    results.push(`Inning ${i + 1}: Away ${currentInning.Away} - Home ${currentInning.Home}`);
+  }
+  if(awayScore === homeScore){
+    results.push(`This game will require extra innings: Away ${awayScore} - Home ${homeScore}`);
+  }else {
+    results.push(`Final Score: Away ${awayScore} - Home ${homeScore}`);
+  }
+  return results;
 }
+
+console.log(scoreboard(getInningScore, inning, 9));
 
 
 
